@@ -36,3 +36,22 @@ if (!Array.prototype.myMap) {
 
 const newArr = arr.myMap((e) => e * 3);
 console.log(newArr);
+
+// Signature .filter - Return new array, input - userFunction
+// If user function return true then current value is included in new Array
+
+if (!Array.prototype.myFilter) {
+  Array.prototype.myFilter = function (calback) {
+    const result = [];
+    for (let i = 0; i < this.length; i++) {
+      if (calback(this[i])) {
+        result.push(this[i]);
+      }
+    }
+
+    return result;
+  };
+}
+
+const newArr2 = arr.myFilter((value) => value % 2 === 0);
+console.log(newArr2);
