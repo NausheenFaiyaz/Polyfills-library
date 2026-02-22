@@ -41,10 +41,10 @@ console.log(newArr);
 // If user function return true then current value is included in new Array
 
 if (!Array.prototype.myFilter) {
-  Array.prototype.myFilter = function (calback) {
+  Array.prototype.myFilter = function (callback) {
     const result = [];
     for (let i = 0; i < this.length; i++) {
-      if (calback(this[i])) {
+      if (callback(this[i])) {
         result.push(this[i]);
       }
     }
@@ -55,3 +55,20 @@ if (!Array.prototype.myFilter) {
 
 const newArr2 = arr.myFilter((value) => value % 2 === 0);
 console.log(newArr2);
+
+// Signature .reduce - Returns single final value
+// Input two params callback function, initialValue
+
+if (!Array.prototype.myReduce) {
+  Array.prototype.myReduce = function (callback, initialVal) {
+    let acc = initialVal;
+    let startIndex = 0;
+    for (let i = startIndex; i < this.length; i++) {
+      acc = callback(acc, this[i], i, this);
+    }
+    return acc;
+  };
+}
+
+const sum = arr.myReduce((acc, curr) => acc + curr, 0);
+console.log(sum);
